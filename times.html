@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Times — Copa dos Primos</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+
+    "@graph": [
+
+        {
+            "@type": "SportsOrganization",
+
+            "@id": "https://copadosprimos.org/#competicao",
+
+            "name": "Copa dos Primos",
+
+            "sport": "Futebol",
+
+            "url": "https://copadosprimos.org/",
+
+            "description":
+                "Competição amadora de futebol disputada entre o Time M FC e o Time P FC."
+        },
+
+
+        {
+            "@type": "SportsTeam",
+
+            "@id": "https://copadosprimos.org/#time-m",
+
+            "name": "Time M FC",
+
+            "sport": "Futebol",
+
+            "logo":
+                "https://copadosprimos.org/img/timeM.png"
+        },
+
+
+        {
+            "@type": "SportsTeam",
+
+            "@id": "https://copadosprimos.org/#time-p",
+
+            "name": "Time P FC",
+
+            "sport": "Futebol",
+
+            "logo":
+                "https://copadosprimos.org/img/timeP.png"
+        },
+
+
+        {
+            "@type": "SportsEvent",
+
+            "@id":
+                "https://copadosprimos.org/#finalissima-2026",
+
+            "name":
+                "Copa dos Primos 2026 — A Finalíssima",
+
+            "sport":
+                "Futebol",
+
+            "description":
+                "Finalíssima da Copa dos Primos 2026 entre o Time M FC e o Time P FC.",
+
+            "eventStatus":
+                "https://schema.org/EventScheduled",
+
+            "homeTeam": {
+
+                "@id":
+                    "https://copadosprimos.org/#time-m"
+
+            },
+
+            "awayTeam": {
+
+                "@id":
+                    "https://copadosprimos.org/#time-p"
+
+            },
+
+            "superEvent": {
+
+                "@id":
+                    "https://copadosprimos.org/#competicao"
+
+            }
+
+        }
+
+    ]
+}
+</script>
+</head>
+
+<body>
+
+<header class="topbar">
+    <div class="logo">🏆 Copa dos Primos</div>
+
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="jogos.html">Jogos</a>
+        <a href="tabela.html">Tabela</a>
+        <a href="times.html">Times</a>
+        <a href="historico.html">Histórico</a>
+    </nav>
+</header>
+
+<main class="container">
+
+    <h1>👥 Times</h1>
+
+    <section class="card">
+        <h2>⚽ Time M FC</h2>
+        <p>Participante da Copa dos Primos.</p>
+        <h3>Jogadores</h3>
+        <ul>
+            <li>Mateus Cavalcante</li>
+            <li>Gabriel</li>
+        </ul>
+    </section>
+
+    <section class="card">
+        <h2>⚽ Time P FC</h2>
+        <p>Participante da Copa dos Primos.</p>
+        <h3>Jogadores</h3>
+        <ul>
+            <li>Pedro Victor</li>
+            <li>Miguel</li>
+            <li>Athur - Banco de Reserva</li>
+        </ul>
+    </section>
+
+</main>
+
+
+
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Classificação — Copa dos Primos</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+
+</head>
+
+<body>
+
+<header class="topbar">
+
+
+<div class="logo">
+    🏆 Copa dos Primos
+</div>
+
+<nav aria-label="Navegação principal">
+
+    <a href="index.html">
+        Início
+    </a>
+
+    <a href="jogos.html">
+        Jogos
+    </a>
+
+    <a href="tabela.html">
+        Tabela
+    </a>
+
+    <a href="times.html">
+        Times
+    </a>
+
+    <a href="historico.html">
+        Histórico
+    </a>
+
+</nav>
+
+
+</header>
+
+<main class="container">
+
+
+<section class="hero">
+
+    <span class="tag">
+        CLASSIFICAÇÃO OFICIAL
+    </span>
+
+    <h1>
+        📊 Classificação
+    </h1>
+
+    <p>
+        A pontuação é calculada com base nos gols marcados por cada time.
+    </p>
+
+</section>
+
+
+<section class="card">
+
+    <h2>
+        Copa dos Primos 2026
+    </h2>
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        #
+                    </th>
+
+                    <th>
+                        Time
+                    </th>
+
+                    <th>
+                        J
+                    </th>
+
+                    <th>
+                        V
+                    </th>
+
+                    <th>
+                        E
+                    </th>
+
+                    <th>
+                        D
+                    </th>
+
+                    <th>
+                        GP
+                    </th>
+
+                    <th>
+                        Pts
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="tabela-classificacao">
+
+                <tr>
+
+                    <td colspan="8">
+                        Carregando classificação...
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+</main>
+
+<footer>
+
+
+<p>
+    Copa dos Primos © 2026
+</p>
+
+
+</footer>
+
+<script src="js/dados.js"></script>
+
+<script src="js/tabela.js"></script>
+
+<script>
+
+    const temporadaAtual = 2026;
+
+    const classificacao =
+        calcularTabela(temporadaAtual);
+
+
+    const tabelaHTML =
+        document.getElementById(
+            "tabela-classificacao"
+        );
+
+
+    classificacao.forEach((time, index) => {
+
+        const linha =
+            document.createElement("tr");
+
+
+        linha.innerHTML = `
+
+            <td>
+                ${index + 1}
+            </td>
+
+
+            <td class="team-table">
+
+                <img
+                    src="${time.escudo}"
+                    alt="Escudo do ${time.nome}"
+                >
+
+                <strong>
+                    ${time.nome}
+                </strong>
+
+            </td>
+
+
+            <td>
+                ${time.jogos}
+            </td>
+
+
+            <td>
+                0
+            </td>
+
+
+            <td>
+                0
+            </td>
+
+
+            <td>
+                0
+            </td>
+
+
+            <td>
+                ${time.gols}
+            </td>
+
+
+            <td>
+                <strong>
+                    ${time.gols}
+                </strong>
+            </td>
+
+        `;
+
+
+        tabelaHTML.appendChild(linha);
+
+    });
+
+</script>
+
+</body>
+
+</html>

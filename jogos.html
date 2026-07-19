@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Jogos — Copa dos Primos</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+
+</head>
+
+<body>
+
+<header class="topbar">
+
+
+<div class="logo">
+    🏆 Copa dos Primos
+</div>
+
+
+<nav aria-label="Navegação principal">
+
+    <a href="index.html">
+        Início
+    </a>
+
+    <a href="jogos.html">
+        Jogos
+    </a>
+
+    <a href="tabela.html">
+        Tabela
+    </a>
+
+    <a href="times.html">
+        Times
+    </a>
+
+    <a href="historico.html">
+        Histórico
+    </a>
+
+</nav>
+
+
+</header>
+
+<main class="container">
+
+
+<section class="hero">
+
+    <span class="tag">
+        PARTIDAS DA COMPETIÇÃO
+    </span>
+
+
+    <h1>
+        ⚽ Jogos
+    </h1>
+
+
+    <p>
+        Confira todas as partidas registradas na Copa dos Primos.
+    </p>
+
+</section>
+
+
+<section class="card">
+
+    <label for="temporada">
+        Selecionar temporada:
+    </label>
+
+
+    <select id="temporada">
+
+        <option value="todas">
+            Todas as temporadas
+        </option>
+
+        <option value="2024">
+            Copa dos Primos 2024
+        </option>
+
+        <option value="2025">
+            Copa dos Primos 2025
+        </option>
+
+        <option value="2026">
+            Copa dos Primos 2026
+        </option>
+
+    </select>
+
+</section>
+
+
+<section id="lista-jogos">
+
+    <p class="muted">
+        Carregando jogos...
+    </p>
+
+</section>
+
+
+</main>
+
+<footer>
+
+
+<p>
+    Copa dos Primos © 2026
+</p>
+
+
+</footer>
+
+<script src="js/dados.js"></script>
+
+<script>
+
+    const listaJogos =
+        document.getElementById(
+            "lista-jogos"
+        );
+
+
+    const seletorTemporada =
+        document.getElementById(
+            "temporada"
+        );
+
+
+    function obterTime(id) {
+
+        return times.find(
+
+            time =>
+                time.id === id
+
+        );
+
+    }
+
+
+    function mostrarJogos() {
+
+
+        const temporadaSelecionada =
+            seletorTemporada.value;
+
+
+        listaJogos.innerHTML = "";
+
+
+        const jogosFiltrados =
+            jogos.filter(jogo => {
+
+
+                if (
+                    temporadaSelecionada ===
+                    "todas"
+                ) {
+
+                    return true;
+
+                }
+
+
+                return jogo.temporada ===
+                    Number(
+                        temporadaSelecionada
+                    );
+
+            });
+
+
+        if (
+            jogosFiltrados.length === 0
+        ) {
+
+            listaJogos.innerHTML = `
+
+                <section class="card">
+
+                    <p class="muted">
+
+                        Nenhum jogo encontrado
+                        nesta temporada.
+
+                    </p>
+
+                </section>
+
+            `;
+
+
+            return;
+
+        }
+
+
+        jogosFiltrados.forEach(jogo => {
+
+
+            const timeCasa =
+                obterTime(
+                    jogo.timeCasa
+                );
+
+
+            const timeFora =
+                obterTime(
+                    jogo.timeFora
+                );
+
+
+            const placarCasa =
+                jogo.golsCasa !== null
+                    ? jogo.golsCasa
+                    : "—";
+
+
+            const placarFora =
+                jogo.golsFora !== null
+                    ? jogo.golsFora
+                    : "—";
+
+
+            let status = "";
+
+
+            if (
+                jogo.status ===
+                "finalizado"
+            ) {
+
+                status =
+                    "Finalizado";
+
+            }
+
+            else if (
+                jogo.status ===
+                "agendado"
+            ) {
+
+                status =
+                    "Agendado";
+
+            }
+
+            else {
+
+                status =
+                    jogo.status;
+
+            }
+
+
+            const card =
+                document.createElement(
+                    "section"
+                );
+
+
+            card.className =
+                "card match-card";
+
+
+            card.innerHTML = `
+
+                <p class="muted">
+
+                    Copa dos Primos
+                    ${jogo.temporada}
+
+                    ·
+
+                    ${jogo.fase}
+
+                </p>
+
+
+                <div class="match">
+
+
+                    <div class="team">
+
+                        <div class="shield">
+
+                            <img
+                                src="${timeCasa.escudo}"
+
+                                alt="Escudo do
+                                ${timeCasa.nome}"
+
+                            >
+
+                        </div>
+
+
+                        <strong>
+
+                            ${timeCasa.nome}
+
+                        </strong>
+
+
+                        <span class="score">
+
+                            ${placarCasa}
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="versus">
+
+                        ×
+
+                    </div>
+
+
+                    <div class="team">
+
+                        <div class="shield">
+
+                            <img
+                                src="${timeFora.escudo}"
+
+                                alt="Escudo do
+                                ${timeFora.nome}"
+
+                            >
+
+                        </div>
+
+
+                        <strong>
+
+                            ${timeFora.nome}
+
+                        </strong>
+
+
+                        <span class="score">
+
+                            ${placarFora}
+
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+                <p class="muted">
+
+                    ${status}
+
+                </p>
+
+            `;
+
+
+            listaJogos.appendChild(
+                card
+            );
+
+        });
+
+    }
+
+
+    seletorTemporada.addEventListener(
+        "change",
+        mostrarJogos
+    );
+
+
+    mostrarJogos();
+    const eventosGoogle = jogos
+        .filter(jogo => jogo.status === "finalizado")
+        .map(jogo => {
+
+            const timeCasa = times.find(
+                time => time.id === jogo.timeCasa
+            );
+
+            const timeFora = times.find(
+                time => time.id === jogo.timeFora
+            );
+
+            return {
+
+                "@type": "SportsEvent",
+
+                "name":
+                    `${timeCasa.nome} ${jogo.golsCasa} x ${jogo.golsFora} ${timeFora.nome}`,
+
+                "sport": "Futebol",
+
+                "eventStatus":
+                    "https://schema.org/EventCompleted",
+
+                "homeTeam": {
+
+                    "@type": "SportsTeam",
+
+                    "name": timeCasa.nome
+
+                },
+
+                "awayTeam": {
+
+                    "@type": "SportsTeam",
+
+                    "name": timeFora.nome
+
+                }
+
+            };
+
+        });
+
+
+    const scriptGoogle =
+        document.createElement(
+            "script"
+        );
+
+
+    scriptGoogle.type =
+        "application/ld+json";
+
+
+    scriptGoogle.textContent =
+        JSON.stringify({
+
+            "@context":
+                "https://schema.org",
+
+            "@graph":
+                eventosGoogle
+
+        });
+
+
+    document.head.appendChild(
+        scriptGoogle
+    );
+
+</script>
+
+
+</body>
+
+</html>
